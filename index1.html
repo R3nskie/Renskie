@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Websiteprmry</title>
+    <style>
+      :root {
+        --bg: #f3f4f6;
+        --card: #ffffff;
+        --primary: #97c100;
+        --primary-2: #39ff14;
+        --text: #1d1d1d;
+        --muted: #666;
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        --radius: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .hero {
+        min-height: 100vh;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+          url("IMG-20260727-WA0038.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: var(--primary);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        padding: 25px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.2rem, 4vw, 3.2rem);
+        margin-bottom: 10px;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 24px;
+      }
+
+      .hero button {
+        border: none;
+        padding: 13px 28px;
+        border-radius: 30px;
+        background: var(--primary-2);
+        color: #111;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: 0 12px 24px rgba(57, 255, 20, 0.4);
+      }
+
+      .menu {
+        padding: 54px 20px 40px;
+        text-align: center;
+      }
+
+      .menu h2 {
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        margin-bottom: 28px;
+      }
+
+      .menu-container {
+        max-width: 900px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(180px, 1fr));
+        gap: 18px;
+      }
+
+      .card {
+        border: none;
+        background: var(--card);
+        padding: 24px 12px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 28px rgba(0, 0, 0, 0.12);
+      }
+
+      .card:active {
+        transform: scale(0.98);
+      }
+
+      .icon {
+        font-size: 2.4rem;
+        margin-bottom: 12px;
+      }
+
+      .card h3 {
+        font-size: 1.15rem;
+        margin-bottom: 6px;
+      }
+
+      .card p {
+        color: #7a7a7a;
+        font-size: 0.92rem;
+      }
+
+      .page {
+        display: none;
+        min-height: 100vh;
+        padding: 40px 20px 60px;
+        background: var(--bg);
+      }
+
+      .page.active {
+        display: block;
+      }
+
+      .page h2 {
+        text-align: center;
+        font-size: clamp(2rem, 3vw, 2.5rem);
+        margin-bottom: 28px;
+      }
+
+      .back {
+        display: inline-block;
+        width: max-content;
+        margin-bottom: 25px;
+        padding: 10px 18px;
+        border: none;
+        border-radius: 999px;
+        background: var(--primary-2);
+        color: #111;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .list {
+        max-width: 760px;
+        margin: 0 auto;
+      }
+
+      .item {
+        background: white;
+        margin-bottom: 14px;
+        padding: 20px 18px;
+        border-radius: 14px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+        font-size: 1.05rem;
+        line-height: 1.7;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      .kegiatan-grid {
+        max-width: 940px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(220px, 1fr));
+        gap: 18px;
+      }
+
+      .kegiatan-foto {
+        width: 100%;
+        display: block;
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        cursor: pointer;
+        object-fit: cover;
+        height: 240px;
+        background: #e3e3e3;
+      }
+
+      .walas-card {
+        max-width: 760px;
+        margin: 0 auto;
+        background: white;
+        padding: 28px 22px;
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        text-align: center;
+      }
+
+      .walas-foto {
+        width: 180px;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 16px;
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, #dfe9d0, #b5d48d);
+        display: block;
+        margin-inline: auto;
+      }
+
+      .walas-card h3 {
+        font-size: 1.7rem;
+        margin-bottom: 14px;
+      }
+
+      .biodata {
+        text-align: left;
+        line-height: 1.8;
+        font-size: 1rem;
+      }
+
+      .about {
+        background: white;
+        padding: 60px 20px;
+        text-align: center;
+      }
+
+      .about p {
+        max-width: 680px;
+        margin: 14px auto;
+        line-height: 1.8;
+        color: var(--muted);
+      }
+
+      footer {
+        background: #111;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .tugas-container {
+        max-width: 980px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(220px, 1fr));
+        gap: 18px;
+      }
+
+      .tugas-card {
+        background: white;
+        border-radius: 18px;
+        padding: 22px;
+        box-shadow: var(--shadow);
+      }
+
+      .tugas-card h3 {
+        margin-bottom: 14px;
+        font-size: 1.35rem;
+      }
+
+      .tugas-item {
+        background: #f3f4f6;
+        border-radius: 12px;
+        padding: 14px;
+        margin-bottom: 10px;
+        line-height: 1.55;
+        overflow-wrap: anywhere;
+      }
+
+      .tugas-kosong {
+        color: #777;
+        text-align: center;
+        padding: 18px 8px;
+      }
+
+      .admin-box {
+        max-width: 760px;
+        margin: 0 auto;
+        background: white;
+        padding: 24px 18px;
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .admin-box input,
+      .admin-box textarea,
+      .admin-box select {
+        width: 100%;
+        padding: 13px;
+        margin: 8px 0 15px;
+        border: 1px solid #d0d0d0;
+        border-radius: 10px;
+        font-size: 1rem;
+        outline: none;
+      }
+
+      .admin-box textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .admin-box button {
+        padding: 11px 18px;
+        border: none;
+        border-radius: 10px;
+        background: var(--primary-2);
+        color: #111;
+        font-weight: 700;
+        cursor: pointer;
+        margin: 4px 2px;
+      }
+
+      .admin-task {
+        background: #f3f4f6;
+        padding: 14px;
+        border-radius: 12px;
+        margin-top: 14px;
+      }
+
+      .admin-task button {
+        background: #ff3b3b;
+        color: white;
+      }
+
+      .admin-status {
+        margin-top: 12px;
+        font-weight: bold;
+      }
+
+      .foto-popup {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(0, 0, 0, 0.92);
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .foto-popup.show {
+        display: flex;
+      }
+
+      .foto-popup img {
+        max-width: 100%;
+        max-height: 88vh;
+        width: auto;
+        height: auto;
+        border-radius: 10px;
+        object-fit: contain;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      }
+
+      .tutup-foto {
+        position: absolute;
+        top: 15px;
+        right: 25px;
+        color: white;
+        font-size: 2.7rem;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      @media (max-width: 600px) {
+        .menu-container,
+        .tugas-container,
+        .kegiatan-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          min-height: 85vh;
+        }
+
+        .walas-foto {
+          width: 150px;
+          height: 190px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero" id="home">
+      <h1>Selamat Datang 👋</h1>
+      <p>Website online</p>
+      <img src="ren.jpg" style="width: 150px; height: 150px; object-fit: cover; border: 4px solid #333; border-radius: 10px;" alt="ren.jpg">
+      <button type="button" onclick="bukaMenu()">scroll down</button>
+    </section>
+
+    <section class="menu" id="menu">
+      <h2>DAFTAR</h2>
+      <div class="menu-container">
+        <button class="card" onclick="bukaHalaman('mapel')">
+          <div class="icon">📚</div>
+          <h3>Mapel</h3>
+          <p>Mata pelajaran</p>
+        </button>
+
+        <button class="card" onclick="bukaHalaman('piket')">
+          <div class="icon">🧹</div>
+          <h3>Jadwal Piket</h3>
+          <p>Piket kelas</p>
+        </button>
+
+        <button class="card" onclick="bukaHalaman('ketua')">
+          <div class="icon">👑</div>
+          <h3>Struktur Kelas</h3>
+          <p>Pengurus kelas</p>
+        </button>
+
+        <button class="card" onclick="bukaHalaman('anggota')">
+          <div class="icon">👨‍🎓</div>
+          <h3>Anggota</h3>
+          <p>Daftar siswa</p>
+        </button>
+
+        <button class="card" onclick="bukaHalaman('walas')">
+          <div class="icon">👨‍🏫</div>
+          <h3>Wali Kelas</h3>
+          <p>Biodata walas</p>
+        </button>
+
+        <button class="card" onclick="bukaHalaman('kegiatan')">
+          <div class="icon">💪</div>
+          <h3>Kegiatan Kelas</h3>
+          <p>Foto kegiatan kelas</p>
+        </button>
+
+        <button class="card" onclick="bukaHalaman('tugas')">
+          <div class="icon">📝</div>
+          <h3>Tugas</h3>
+          <p>Tugas hari ini & PR</p>
+        </button>
+
+        <button class="card" onclick="bukaHalaman('admin')">
+          <div class="icon">🔐</div>
+          <h3>Admin</h3>
+          <p>Kelola tugas</p>
+        </button>
+      </div>
+    </section>
+
+    <section class="page" id="mapel">
+      <button class="back" onclick="kembali()">← Kembali</button>
+      <h2>📚 Mata Pelajaran</h2>
+      <div class="list">
+        <div class="item">
+          <b>SENIN</b><br /><br />
+          • PABD<br />
+          • SEJ<br />
+          • PKN<br />
+          •MTK
+        </div>
+
+        <div class="item">
+          <b>SELASA</b><br /><br />
+          • INF<br />
+          • B.INDO<br />
+          • SB
+        </div>
+
+        <div class="item">
+          <b>RABU</b><br /><br />
+          • PRODUKTIF
+        </div>
+
+        <div class="item">
+          <b>KAMIS</b><br /><br />
+          • B.INGRIS<br />
+          • IPAS<br />
+          • PJOK
+        </div>
+
+        <div class="item">
+          <b>JUMAT</b><br /><br />
+          • IPAS<br />
+          • KKA/BMR
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="piket">
+      <button class="back" onclick="kembali()">← Kembali</button>
+      <h2>🧹 Jadwal Piket</h2>
+      <div class="list">
+        <div class="item">
+          <b>Senin</b><br />
+          1. Achmad Raditya Poleh<br />
+          2. Arya Aprijal<br />
+          3. Fachrizal Roisul Balad<br />
+          4. Ilham<br />
+          5. Muhamad Asriel Rasmanto<br />
+          6. Muhammad Firdaus<br />
+          7. Annisa Nurfani<br />
+          8. Rizky Anwar
+        </div>
+
+        <div class="item">
+          <b>Selasa</b><br />
+          1. Ahmad Maulana<br />
+          2. Atma Wijaya<br />
+          3. Fahri Afriansyah<br />
+          4. Irghi Rafa Ramadhan<br />
+          5. Muhamad Diki Adittiya<br />
+          6. Muhammad Khoerul Azzam<br />
+          7. Metta Ramadhani<br />
+          8. Yudika Nova Riansah
+        </div>
+
+        <div class="item">
+          <b>Rabu</b><br />
+          1. Akhmmad Syam Kasidi<br />
+          2. Cahyo Satrio Nugroho<br />
+          3. Fredis Purnama<br />
+          4. Muhamad Alif Timur<br />
+          5. Muhamad Oka<br />
+          6. Muhammad Panji Saputra<br />
+          7. Syafira Ramadhani<br />
+          8. Reyhan Alpiansyah
+        </div>
+
+        <div class="item">
+          <b>Kamis</b><br />
+          1. Alief Ramadhani Saputra<br />
+          2. Danang Maolana<br />
+          3. Saipul Dwi Muzaki<br />
+          4. Muhamad Alkahfie Chaerudin<br />
+          5. Muhamad Nimo Syahputra<br />
+          6. Muhamad Riski<br />
+          7. Riski Fauzan Laya<br />
+          8. Tio Maulana
+        </div>
+
+        <div class="item">
+          <b>Jumat</b><br />
+          1. Muhamad Dhani Lutfiansah<br />
+          2. Muhamad Reno Sandria<br />
+          3. Muhamad Riski Ramadhani<br />
+          4. Muhammad Fachry<br />
+          5. Reyfan Apriatama<br />
+          6. Rahma Deviansyah<br />
+          7. Haidar Azhar Hermawan<br />
+          8. Valentino Jason Julian
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="ketua">
+      <button class="back" onclick="kembali()">← Kembali</button>
+      <h2>👑 Struktur Kelas</h2>
+      <div class="list">
+        <div class="item">
+          👑 <b>KETUA KELAS</b><br />
+          RAIHAN
+        </div>
+
+        <div class="item">
+          ⭐ <b>Wakil Ketua</b><br />
+          IQBAL
+        </div>
+
+        <div class="item">
+          📝 <b>Sekretaris</b><br />
+          NAYLA
+        </div>
+
+        <div class="item">
+          💰 <b>Bendahara</b><br />
+          NURHAFIZAH
+        </div>
+
+        <div class="item">
+          🪪 <b>Divisi Kelas</b><br /><br />
+          1. <b>Div. Peralatan</b><br />
+          - Tio<br />
+          - Alif<br />
+          - Pai<br /><br />
+
+          2. <b>Div. Kerohanian</b><br />
+          - Rizki<br />
+          - Epan<br />
+          - Alief R<br /><br />
+
+          3. <b>Div. Keamanan</b><br />
+          - Fachrizal<br />
+          - Alka<br />
+          - Poleh<br /><br />
+
+          4. <b>Div. EmBeGe</b><br />
+          Rolling
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="anggota">
+      <button class="back" onclick="kembali()">← Kembali</button>
+      <h2>👨‍🎓 Anggota Kelas</h2>
+      <div class="list">
+        <div class="item">
+          1. Achmad Raditya Poleh<br />
+          2. Ahmad Maulana<br />
+          3. Akhmmad Syam Kasidi<br />
+          4. Alief Ramadhani Saputra<br />
+          5. Muhamad Asriel Rasmanto<br />
+          6. Muhamad Dhani Lutfiansah<br />
+          7. Metta Ramadhani<br />
+          8. Rahma Deviansyah<br />
+          9. Syafira Ramadhani<br />
+          10. Tio Maulana
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="walas">
+      <button class="back" onclick="kembali()">← Kembali</button>
+      <h2>👨‍🏫 Wali Kelas</h2>
+
+      <div class="walas-card">
+        <img
+          class="walas-foto"
+          src="IMG_6465.jpg"
+          alt="Wali kelas"
+        />
+        <h3>Rina Suryani, S.Pd</h3>
+        <div class="biodata">
+          <p><b>Nama:</b> Rina Suryani, S.Pd</p>
+          <p><b>Jabatan:</b> Wali Kelas XI TJKT I</p>
+          <p><b>Mapel:</b> Teknologi Informasi</p>
+          <p><b>Kontak:</b> Wali kelas kelas TJKT I</p>
+          <p><b>Status:</b> Aktif membimbing siswa</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="kegiatan">
+      <button class="back" onclick="kembali()">← Kembali</button>
+      <h2>💪 Kegiatan Kelas</h2>
+      <div class="kegiatan-grid">
+        <img class="kegiatan-foto" src="IMG-20260820-WA0040.jpg" alt="Kegiatan 1" onclick="bukaFoto(this.src)" />
+        <img class="kegiatan-foto" src="IMG-20260820-WA0060.jpg" alt="Kegiatan 2" onclick="bukaFoto(this.src)" />
+        <img class="kegiatan-foto" src="IMG-20260820-WA0062.jpg" alt="Kegiatan 3" onclick="bukaFoto(this.src)" />
+        <img class="kegiatan-foto" src="IMG_2517@-188682033.JPG" alt="Kegiatan 4" onclick="bukaFoto(this.src)" />
+      </div>
+    </section>
+
+    <section class="page" id="tugas">
+      <button class="back" onclick="kembali()">← Kembali</button>
+      <h2>📝 Tugas</h2>
+      <div class="tugas-container">
+        <div class="tugas-card">
+          <h3>Hari Ini</h3>
+          <div class="tugas-item">• Mengumpulkan tugas TIK</div>
+          <div class="tugas-item">• Membuat rangkuman materi jaringan</div>
+          <div class="tugas-item">• Menyelesaikan latihan praktik</div>
+        </div>
+
+        <div class="tugas-card">
+          <h3>PR</h3>
+          <div class="tugas-item">• Menulis 5 fungsi perangkat jaringan</div>
+          <div class="tugas-item">• Mempelajari topologi jaringan</div>
+          <div class="tugas-item">• Review materi minggu lalu</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="admin">
+      <button class="back" onclick="kembali()">← Kembali</button>
+      <h2>🔐 Admin</h2>
+
+      <div class="admin-box">
+        <label for="judul">Judul Tugas</label>
+        <input id="judul" type="text" placeholder="Contoh: Tugas Jaringan" />
+
+        <label for="jenis">Jenis</label>
+        <select id="jenis">
+          <option value="Hari Ini">Hari Ini</option>
+          <option value="PR">PR</option>
+        </select>
+
+        <label for="desk">Deskripsi</label>
+        <textarea id="desk" placeholder="Tuliskan detail tugas..."></textarea>
+
+        <button type="button" onclick="tambahTugas()">Tambah Tugas</button>
+        <button type="button" onclick="resetTugas()">Reset</button>
+
+        <div id="status" class="admin-status"></div>
+      </div>
+    </section>
+
+    <div class="foto-popup" id="fotoPopup" onclick="tutupFoto()">
+      <span class="tutup-foto">×</span>
+      <img id="popupImage" src="" alt="Preview foto" />
+    </div>
+
+    <script>
+      function bukaMenu() {
+        document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
+      }
+
+      function bukaHalaman(id) {
+        const pages = document.querySelectorAll(".page");
+        pages.forEach((page) => page.classList.remove("active"));
+
+        const target = document.getElementById(id);
+        if (target) target.classList.add("active");
+      }
+
+      function kembali() {
+        document.querySelectorAll(".page").forEach((page) => page.classList.remove("active"));
+        document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
+      }
+
+      function bukaFoto(src) {
+        const popup = document.getElementById("fotoPopup");
+        const img = document.getElementById("popupImage");
+        img.src = src;
+        popup.classList.add("show");
+      }
+
+      function tutupFoto() {
+        const popup = document.getElementById("fotoPopup");
+        popup.classList.remove("show");
+      }
+
+      function tambahTugas() {
+        const judul = document.getElementById("judul").value.trim();
+        const jenis = document.getElementById("jenis").value;
+        const desk = document.getElementById("desk").value.trim();
+        const status = document.getElementById("status");
+
+        if (!judul || !desk) {
+          status.style.color = "red";
+          status.textContent = "Judul dan deskripsi tugas harus diisi!";
+          return;
+        }
+
+        const card = document.createElement("div");
+        card.className = "admin-task";
+
+        card.innerHTML = `
+          <strong>${jenis}</strong><br />
+          <b>${judul}</b><br />
+          ${desk}
+          <br /><br />
+          <button type="button" onclick="this.parentElement.remove(); statusTugas('Tugas berhasil dihapus')">Hapus</button>
+        `;
+
+        const adminBox = document.querySelector(".admin-box");
+        adminBox.appendChild(card);
+
+        status.style.color = "green";
+        status.textContent = "Tugas berhasil ditambahkan!";
+
+        document.getElementById("judul").value = "";
+        document.getElementById("desk").value = "";
+      }
+
+      function resetTugas() {
+        document.getElementById("judul").value = "";
+        document.getElementById("desk").value = "";
+        document.getElementById("status").textContent = "";
+      }
+
+      function statusTugas(msg) {
+        const status = document.getElementById("status");
+        status.style.color = "green";
+        status.textContent = msg;
+      }
+    </script>
+  </body>
+</html>
